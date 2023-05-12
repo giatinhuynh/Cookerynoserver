@@ -31,7 +31,7 @@ form.addEventListener("submit", async (event) => {
         }],
         "temperature": 1
       })
-    });
+    });    
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
