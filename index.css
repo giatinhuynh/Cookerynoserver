@@ -141,7 +141,7 @@ select {
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   }
-  
+
   #sendPromptButton:hover {
   background-color: #005454;
   }
@@ -153,7 +153,7 @@ select {
     margin-top: 20px;
     flex-wrap: wrap; /* Add this line to allow the elements to wrap if necessary */
   }
-  
+
   #customPromptInput {
     flex-grow: 1;
     height: 40px;
@@ -165,7 +165,7 @@ select {
     margin-right: 10px;
     margin-bottom: 10px; /* Add this line to give space between the input and button if they wrap */
   }
-  
+
   #sendPromptButton {
     height: 40px;
     padding: 0 15px;
@@ -178,8 +178,7 @@ select {
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
   }
-  
+
   #sendPromptButton:hover {
     background-color: #005454;
   }
-  
