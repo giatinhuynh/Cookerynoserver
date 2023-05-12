@@ -45,6 +45,55 @@ form.addEventListener("submit", async (event) => {
   }
 
   form.reset();
+  // Add this code snippet after the "form.reset();" line
+const sendPromptButton = document.querySelector("#sendPromptButton");
+sendPromptButton.addEventListener("click", sendCustomPrompt);
+
+async function sendCustomPrompt() {
+  const customPromptInput = document.querySelector("#customPromptInput");
+  const customPrompt = customPromptInput.value.trim();
+  if (!customPrompt) return;
+
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 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' // Replace with your OpenAI API key
+      },
+      body: JSON.stringify({
+        "model": "gpt-3.5-turbo",
+        "messages": [{
+          "role": "user",
+          "content": customPrompt
+        }],
+        "temperature": 1
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Data received from API:", data);
+    displayCustomResponse(data);
+  } catch (error) {
+    console.log(error);
+  }
+
+  customPromptInput.value = "";
+}
+
+function displayCustomResponse(data) {
+  const chatArea = document.querySelector(".chat-area");
+  const message = data.choices[0].message.content.trim().replace(/\n/g, "<br>");
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("message");
+  messageDiv.innerHTML = `<div class="bot-message">${message}</div>`;
+  chatArea.appendChild(messageDiv);
+}
+
 });
 
 function displayRecipe(data) {
