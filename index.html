@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookery</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Cookery</h1>
+      <form id="recipe-form">
+        <div class="input-group">
+          <label for="expertise">Expertise Level:</label>
+          <select name="expertise" id="expertise">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="complexity">Complexity:</label>
+          <select name="complexity" id="complexity">
+            <option value="simple">Simple</option>
+            <option value="moderate">Moderate</option>
+            <option value="complex">Complex</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="ingredients">Ingredients:</label>
+          <input type="text" name="ingredients" id="ingredients" />
+        </div>
+        <div class="input-group">
+          <label for="budget">Budget:</label>
+          <input type="number" name="budget" id="budget" min="0" />
+        </div>
+        <div class="input-group">
+          <label for="time">Preparation Time:</label>
+          <input type="number" name="time" id="time" min="0" />
+        </div>
+        <div class="input-group">
+          <label for="scale">Serving Scale:</label>
+          <input type="number" name="scale" id="scale" min="0" />
+        </div>
+        <div class="input-group">
+          <label for="nutrition">Nutrition Preference:</label>
+          <select name="nutrition" id="nutrition">
+            <option value="balanced">Balanced</option>
+            <option value="high-protein">High-Protein</option>
+            <option value="low-carb">Low-Carb</option>
+            <option value="low-fat">Low-Fat</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="taste">Taste Preference:</label>
+          <select name="taste" id="taste">
+            <option value="sweet">Sweet</option>
+            <option value="sour">Sour</option>
+            <option value="spicy">Spicy</option>
+            <option value="salty">Salty</option>
+            <option value="bitter">Bitter</option>
+            <option value="umami">Umami</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="dietary-restrictions">Dietary Restrictions:</label>
+          <input type="text" name="dietary-restrictions" id="dietary-restrictions" />
+        </div>
+        <button class="submit-button" type="submit">Get Recipe</button>
+      </form>
+      <div class="response">
+        <div class="response-title">Recipe:</div>
+        <div class="recipe" id="recipe"></div>
+        <div class="chat-area"></div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

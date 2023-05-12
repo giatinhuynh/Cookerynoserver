@@ -1,0 +1,58 @@
+const form = document.querySelector("#recipe-form");
+const chatArea = document.querySelector(".chat-area");
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const expertise = document.querySelector('#expertise').value;
+  const complexity = document.querySelector('#complexity').value;
+  const ingredients = document.querySelector('#ingredients').value;
+  const budget = document.querySelector('#budget').value;
+  const time = document.querySelector('#time').value;
+  const scale = document.querySelector('#scale').value;
+  const nutrition = document.querySelector('#nutrition').value;
+  const taste = document.querySelector('#taste').value;
+  const dietary_restrictions = document.querySelector('#dietary-restrictions').value;
+
+  const prompt = `You are a cooking chatbot that can help me prepare the perfect meal! Given the expertise level of ${expertise}, complexity of ${complexity}, budget of ${budget}, preparation time of ${time} minutes, serving scale of ${scale}, nutrition preference of ${nutrition}, taste preference of ${taste}, dietary restrictions of ${dietary_restrictions}, and available ingredients of ${ingredients}, please provide a suitable grocery list, recipe, and cooking instructions for a meal.`;
+
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_API_KEY' // Replace with your OpenAI API key
+      },
+      body: JSON.stringify({
+        "model": "gpt-3.5-turbo",
+        "messages": [{
+          "role": "user",
+          "content": prompt
+        }],
+        "temperature": 1
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Data received from API:", data);
+    displayRecipe(data);
+  } catch (error) {
+    console.log(error);
+  }
+
+  form.reset();
+});
+
+function displayRecipe(data) {
+    const recipeElement = document.querySelector("#recipe");
+    recipeElement.innerHTML = "";
+  
+    const message = data.choices[0].message.content.trim().replace(/\n/g, "<br>");
+    recipeElement.innerHTML = `<div class="message"><div class="bot-message">${message}</div></div>`;
+  
+    form.reset();
+  }
