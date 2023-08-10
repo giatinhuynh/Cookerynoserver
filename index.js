@@ -26,7 +26,7 @@ form.addEventListener("submit", async (event) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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' // Replace with your OpenAI API key
+        'Authorization': 'Bearer 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' // Replace with your OpenAI API key
       },
       body: JSON.stringify({
         "model": "gpt-3.5-turbo",
